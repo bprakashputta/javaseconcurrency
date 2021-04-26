@@ -5,6 +5,8 @@ import com.app.runnables.AppThread;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,8 +23,10 @@ public class TestRunnable {
                 Logger.getLogger(AppThread.class.getName()).log(Level.SEVERE, null, e);
             }
         };
-
-        Thread thread = new Thread(runnable);
-        thread.start();
+//        Using Thread Class to run thread
+//        Thread thread = new Thread(runnable);
+//        thread.start();
+        Executor executor = Executors.newSingleThreadExecutor();
+        executor.execute(runnable);
     }
 }
